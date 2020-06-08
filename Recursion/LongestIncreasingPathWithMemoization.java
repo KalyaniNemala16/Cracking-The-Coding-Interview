@@ -45,7 +45,7 @@ public int longestIncreasingPath(int[][] matrix) {
 
   }
   public static void main(String[] args) {
-    Main m = new Main();
+    LongestIncreasingPathWithMemoization m = new LongestIncreasingPathWithMemoization();
     int[][] matrix = {
         {9, 9, 4},
         {6, 6, 8},
