@@ -1,45 +1,42 @@
-import java.util.*;
-import java.util.Arrays;
-class TreeNode{
-TreeNode left, right;
-int val;
-TreeNode(int x){
-  val = x;
-}
-}
 public class validateBST{
- static TreeNode root;
-  public String helper(TreeNode n){
-    if(n == null) return "";
-    String s;
-    s = helper(n.left) + String.valueOf(n.val) + helper(n.right);
-    return s;
+  public static class Node{
+    int val;
+    Node left,right;
+    public Node(int data){
+      val = data;
+      left = null;
+      right = null;
+    }
   }
-  public boolean validate(TreeNode root){
-    String s = helper(root);
-    if(s.isEmpty()){
+
+  public static boolean validate(Node root,Integer min,Integer max){
+    if(root == null) return true;
+    if(max!=null && root.val>max || min!=null && root.val<=min){
       return false;
     }
-    int[] arr = new int[s.length()];
-    for(int i = 0 ; i<s.length() ; i++){
-      arr[i] = s.charAt(i);
-    }
-    for(int i = 0; i<arr.length-1; i++){
-      if(arr[i] > arr[i+1]) return false;
+    if(!validate(root.left,min,root.val) || !validate(root.right,root.val,max)){
+      return false;
     }
     return true;
   }
+
+  public static boolean validate(Node n){
+    boolean result = validate(n,null,null);
+    return result;
+  }
+
   public static void main(String args[]){
     validateBST v = new validateBST();
-    root = new TreeNode(4);
-    root.left = new TreeNode(2);
-    root.right = new TreeNode(6);
-    root.left.left = new TreeNode(1);
-    root.left.right = new TreeNode(3);
-    root.right.left = new TreeNode(5);
-    root.right.right = new TreeNode(7);
-    //System.out.print(v.helper(root));
-
-    System.out.print(v.validate(root));
+    Node n1 = new Node(1);
+    n1.left = new Node(2);
+    n1.left.left = new Node(4);
+    n1.left.right = new Node(0);
+    n1.left.right.left = new Node(6);
+    n1.left.right.left.right = new Node(7);
+    n1.right = new Node(3);
+    n1.right.left = new Node(8);
+    n1.right.right = new Node(9);
+    System.out.println(v.validate(n1));
   }
+
 }

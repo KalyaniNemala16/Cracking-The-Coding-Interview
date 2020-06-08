@@ -19,7 +19,7 @@ public class validateBST2{
       if(n.left.val > n.val || !flag)
       return false;
     }
-    else if(n.right!=null && n.left == null){
+    else{
       if(n.right.val < n.val || !flag)
       return false;
     }
@@ -27,16 +27,15 @@ public class validateBST2{
   }
   public boolean validate(TreeNode root){
     boolean flag = true;
-    return helper(root,flag);
+    return helper(root,flag)
   }
   public static void main(String args[]){
     validateBST2 v = new validateBST2();
     root = new TreeNode(3);
-    root.left = new TreeNode(2);
+    root.left = new TreeNode(4);
     root.right = new TreeNode(5);
     root.left.left = new TreeNode(1);
-    //root.left.right = new TreeNode(2);
-    root.right.left = new TreeNode(4);
+    root.left.right = new TreeNode(2);
     root.right.right = new TreeNode(6);
 
     System.out.println(v.validate(root));
