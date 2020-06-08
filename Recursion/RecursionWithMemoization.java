@@ -7,8 +7,8 @@ public int longestIncreasingPath(int[][] matrix) {
           cache[rpos] = new int[matrix[rpos].length];
           Arrays.fill(cache[rpos], -1);
         }
-        for(int i = 0; i<=matrix.length-1 ; i++){
-          for(int j = 0; j<=matrix[i].length-1 ; j++){
+        for(int i = 0; i <= matrix.length-1 ; i++){
+          for(int j = 0; j <= matrix[i].length-1 ; j++){
           int x = getLongestPath(matrix, i, j,cache);
           if(x > max) max = x;
           }
@@ -24,17 +24,17 @@ public int longestIncreasingPath(int[][] matrix) {
     
     if(cache[i][j] != -1) return cache[i][j];
     //top
-    if(j>=0 && i > 0 && i< matrix.length && j<matrix[i].length && matrix[i-1][j] > matrix[i][j]){
+    if(j >= 0 && i > 0 && i < matrix.length && j < matrix[i].length && matrix[i-1][j] > matrix[i][j]){
        top = length + getLongestPath(matrix,i-1,j,cache);
     }
     //left
-    if(j>0 && i >= 0 && i< matrix.length && j<matrix[i].length && matrix[i][j-1] > matrix[i][j]){
+    if(j > 0 && i >= 0 && i < matrix.length && j < matrix[i].length && matrix[i][j-1] > matrix[i][j]){
      left = length + getLongestPath(matrix,i,j-1,cache);
    }
-   if(j>=0 && i >=0 && i<matrix.length-1 && j<matrix[i].length && matrix[i+1][j] > matrix[i][j]){
+   if(j >= 0 && i >= 0 && i < matrix.length-1 && j < matrix[i].length && matrix[i+1][j] > matrix[i][j]){
      bottom = length + getLongestPath(matrix,i+1,j,cache);
    }
-   if(j>=0 && i >=0 && i< matrix.length && j<matrix[i].length - 1 && matrix[i][j+1] > matrix[i][j]){
+   if(j >= 0 && i >= 0 && i < matrix.length && j < matrix[i].length - 1 && matrix[i][j+1] > matrix[i][j]){
      right = length + getLongestPath(matrix,i,j+1,cache);
    }
    int max1 = Math.max(top,bottom); 
